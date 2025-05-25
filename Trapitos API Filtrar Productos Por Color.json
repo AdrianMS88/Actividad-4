@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "Filtrar Productos por Color - Trapitos",
+    "_postman_id": "d1f50a3b-ecba-4e1f-8e1e-e5fbd9154db5",
+    "description": "Prueba automatizada para validar el filtrado de productos por color en trapitos.com.es",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Productos por color (rojo)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://www.trapitos.com.es/api/productos?color=rojo",
+          "protocol": "https",
+          "host": [
+            "www",
+            "trapitos",
+            "com",
+            "es"
+          ],
+          "path": [
+            "api",
+            "productos"
+          ],
+          "query": [
+            {
+              "key": "color",
+              "value": "rojo"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"C\u00f3digo de estado es 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"El contenido es un array de productos\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.be.an('array');",
+              "});",
+              "",
+              "pm.test(\"Todos los productos tienen el color rojo\", function () {",
+              "    const productos = pm.response.json();",
+              "    productos.forEach(producto => {",
+              "        pm.expect(producto.color.toLowerCase()).to.eql(\"rojo\");",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
