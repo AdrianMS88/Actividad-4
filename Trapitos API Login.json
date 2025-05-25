@@ -1,0 +1,58 @@
+{
+    "info": {
+        "name": "Trapitos - Verificar Inicio de Sesi\u00f3n",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "POST Iniciar Sesi\u00f3n",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"usuario@trapitos.com.es\",\n    \"password\": \"contrasena123\"\n}"
+                },
+                "url": {
+                    "raw": "https://www.trapitos.com.es/api/login",
+                    "protocol": "https",
+                    "host": [
+                        "www",
+                        "trapitos",
+                        "com",
+                        "es"
+                    ],
+                    "path": [
+                        "api",
+                        "login"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Estado 200 OK\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "pm.test(\"Respuesta contiene token de autenticaci\u00f3n\", function () {",
+                            "    const jsonData = pm.response.json();",
+                            "    pm.expect(jsonData).to.have.property(\"token\");",
+                            "    pm.expect(jsonData.token).to.be.a(\"string\");",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}

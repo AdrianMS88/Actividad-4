@@ -1,0 +1,59 @@
+{
+    "info": {
+        "name": "Trapitos - Verificar productos API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "GET Productos",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://www.trapitos.com.es/api/productos",
+                    "protocol": "https",
+                    "host": [
+                        "www",
+                        "trapitos",
+                        "com",
+                        "es"
+                    ],
+                    "path": [
+                        "api",
+                        "productos"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Estado 200 OK\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "pm.test(\"La respuesta es un array de productos\", function () {",
+                            "    const jsonData = pm.response.json();",
+                            "    pm.expect(jsonData).to.be.an('array');",
+                            "    pm.expect(jsonData.length).to.be.above(0);",
+                            "});",
+                            "",
+                            "pm.test(\"Cada producto tiene campos requeridos\", function () {",
+                            "    const jsonData = pm.response.json();",
+                            "    jsonData.forEach(producto => {",
+                            "        pm.expect(producto).to.have.property(\"id\");",
+                            "        pm.expect(producto).to.have.property(\"nombre\");",
+                            "        pm.expect(producto).to.have.property(\"precio\");",
+                            "        pm.expect(producto).to.have.property(\"imagen_url\");",
+                            "    });",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}

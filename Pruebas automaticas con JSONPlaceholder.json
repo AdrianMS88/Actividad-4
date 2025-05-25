@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "acbe36f2-f238-4a1f-b39e-de46aca82ce0",
+		"name": "Pruebas con JSONPlaceholder",
+		"description": "Colección de pruebas automáticas para la API de JSONPlaceholder, incluyendo métodos GET, POST, PUT, DELETE y una prueba de rendimiento básica.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43620438"
+	},
+	"item": [
+		{
+			"name": "POST - Crear un Nuevo Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Comprueba que el código de estado HTTP es 201 (Created)",
+							"pm.test(\"El código de estado es 201 Created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"// Verifica que el cuerpo de la respuesta contiene el título enviado",
+							"pm.test(\"El cuerpo de la respuesta contiene el título esperado\", function () {",
+							"    pm.expect(pm.response.json().title).to.eql(\"Mi Nuevo Post de Prueba\");",
+							"});",
+							"",
+							"// Verifica que el cuerpo de la respuesta contiene el ID de usuario enviado",
+							"pm.test(\"El cuerpo de la respuesta contiene el ID de usuario esperado\", function () {",
+							"    pm.expect(pm.response.json().userId).to.eql(1);",
+							"});",
+							"",
+							"// Comprueba que el cuerpo de la respuesta tiene una propiedad 'id' (asignada por la API)",
+							"pm.test(\"El cuerpo de la respuesta tiene una propiedad 'id'\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property('id');",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Indica que el cuerpo de la petición es JSON."
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Mi Nuevo Post de Prueba\",\n    \"body\": \"Este es el contenido de mi post creado automáticamente.\",\n    \"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Prueba para crear un nuevo recurso 'post' usando el método POST."
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Obtener un Post Específico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Comprueba que el código de estado HTTP es 200 (OK)",
+							"pm.test(\"El código de estado es 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Verifica que el cuerpo de la respuesta no está vacío y es un objeto",
+							"pm.test(\"El cuerpo de la respuesta no está vacío\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('object').and.not.be.empty;",
+							"});",
+							"",
+							"// Verifica que el título del post es el esperado para el ID 1",
+							"pm.test(\"El cuerpo de la respuesta contiene el título esperado\", function () {",
+							"    pm.expect(pm.response.json().title).to.eql(\"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\");",
+							"});",
+							"",
+							"// Verifica que el ID de usuario del post es el esperado para el ID 1",
+							"pm.test(\"El cuerpo de la respuesta contiene el ID de usuario esperado\", function () {",
+							"    pm.expect(pm.response.json().userId).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "Prueba para obtener un recurso 'post' específico por su ID usando el método GET."
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Actualizar un Post Existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Comprueba que el código de estado HTTP es 200 (OK)",
+							"pm.test(\"El código de estado es 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Verifica que el título del post se ha actualizado correctamente en la respuesta",
+							"pm.test(\"El cuerpo de la respuesta contiene el título actualizado\", function () {",
+							"    pm.expect(pm.response.json().title).to.eql(\"Título Actualizado de Post\");",
+							"});",
+							"",
+							"// Verifica que el cuerpo del post se ha actualizado correctamente en la respuesta",
+							"pm.test(\"El cuerpo de la respuesta contiene el contenido actualizado\", function () {",
+							"    pm.expect(pm.response.json().body).to.eql(\"Contenido del post actualizado.\");",
+							"});",
+							"",
+							"// Verifica que el ID del post en la respuesta sigue siendo el correcto",
+							"pm.test(\"El cuerpo de la respuesta contiene el ID correcto\", function () {",
+							"    pm.expect(pm.response.json().id).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Indica que el cuerpo de la petición es JSON."
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"title\": \"Título Actualizado de Post\",\n    \"body\": \"Contenido del post actualizado.\",\n    \"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "Prueba para actualizar un recurso 'post' existente usando el método PUT."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Eliminar un Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Comprueba que el código de estado HTTP es 200 (OK) o 204 (No Content)",
+							"// JSONPlaceholder devuelve 200 y un objeto vacío para DELETE",
+							"pm.test(\"El código de estado es 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Verifica que el cuerpo de la respuesta está vacío (o es un objeto vacío, según la API)",
+							"// JSONPlaceholder devuelve {} para DELETE",
+							"pm.test(\"El cuerpo de la respuesta está vacío o es un objeto vacío\", function () {",
+							"    pm.expect(pm.response.json()).to.be.empty;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "Prueba para eliminar un recurso 'post' existente usando el método DELETE."
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Prueba de Rendimiento (Todos los Posts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Comprueba que el tiempo de respuesta es inferior a 500 milisegundos",
+							"// Puedes ajustar este umbral según tus expectativas de rendimiento",
+							"pm.test(\"El tiempo de respuesta es inferior a 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Comprueba que el código de estado HTTP es 200 (OK)",
+							"pm.test(\"El código de estado es 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Verifica que la respuesta es un array y contiene al menos 100 posts (lo esperado para JSONPlaceholder)",
+							"pm.test(\"La respuesta es un array de posts con al menos 100 elementos\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"    pm.expect(pm.response.json().length).to.be.at.least(100);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Prueba básica de rendimiento para medir el tiempo de respuesta al obtener todos los 'posts'."
+			},
+			"response": []
+		}
+	]
+}

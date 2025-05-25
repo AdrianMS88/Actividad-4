@@ -1,0 +1,349 @@
+{
+  "info": {
+    "name": "Prueba de rendimiento - B\u00fasquedas m\u00faltiples",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "B\u00fasqueda \u2013 camiseta",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/buscar?q=camiseta",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "camiseta"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta exitosa\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta menor a 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "let tiempos = pm.environment.get(\"tiempos\") || \"[]\";",
+              "try {",
+              "    tiempos = JSON.parse(tiempos);",
+              "} catch (e) {",
+              "    tiempos = [];",
+              "}",
+              "",
+              "tiempos.push({",
+              "    query: pm.request.url.query.toString(),",
+              "    time: pm.response.responseTime",
+              "});",
+              "",
+              "pm.environment.set(\"tiempos\", JSON.stringify(tiempos));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B\u00fasqueda \u2013 pantal\u00f3n",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/buscar?q=pantal\u00f3n",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "pantal\u00f3n"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta exitosa\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta menor a 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "let tiempos = pm.environment.get(\"tiempos\") || \"[]\";",
+              "try {",
+              "    tiempos = JSON.parse(tiempos);",
+              "} catch (e) {",
+              "    tiempos = [];",
+              "}",
+              "",
+              "tiempos.push({",
+              "    query: pm.request.url.query.toString(),",
+              "    time: pm.response.responseTime",
+              "});",
+              "",
+              "pm.environment.set(\"tiempos\", JSON.stringify(tiempos));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B\u00fasqueda \u2013 abrigo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/buscar?q=abrigo",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "abrigo"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta exitosa\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta menor a 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "let tiempos = pm.environment.get(\"tiempos\") || \"[]\";",
+              "try {",
+              "    tiempos = JSON.parse(tiempos);",
+              "} catch (e) {",
+              "    tiempos = [];",
+              "}",
+              "",
+              "tiempos.push({",
+              "    query: pm.request.url.query.toString(),",
+              "    time: pm.response.responseTime",
+              "});",
+              "",
+              "pm.environment.set(\"tiempos\", JSON.stringify(tiempos));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B\u00fasqueda \u2013 vestido",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/buscar?q=vestido",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "vestido"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta exitosa\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta menor a 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "let tiempos = pm.environment.get(\"tiempos\") || \"[]\";",
+              "try {",
+              "    tiempos = JSON.parse(tiempos);",
+              "} catch (e) {",
+              "    tiempos = [];",
+              "}",
+              "",
+              "tiempos.push({",
+              "    query: pm.request.url.query.toString(),",
+              "    time: pm.response.responseTime",
+              "});",
+              "",
+              "pm.environment.set(\"tiempos\", JSON.stringify(tiempos));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B\u00fasqueda \u2013 zapatos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/buscar?q=zapatos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "zapatos"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta exitosa\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta menor a 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "let tiempos = pm.environment.get(\"tiempos\") || \"[]\";",
+              "try {",
+              "    tiempos = JSON.parse(tiempos);",
+              "} catch (e) {",
+              "    tiempos = [];",
+              "}",
+              "",
+              "tiempos.push({",
+              "    query: pm.request.url.query.toString(),",
+              "    time: pm.response.responseTime",
+              "});",
+              "",
+              "pm.environment.set(\"tiempos\", JSON.stringify(tiempos));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evaluaci\u00f3n de rendimiento",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}",
+          "host": [
+            "{{base_url}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let tiempos = pm.environment.get(\"tiempos\");",
+              "try {",
+              "    if (typeof tiempos === \"string\") tiempos = JSON.parse(tiempos);",
+              "",
+              "    if (!Array.isArray(tiempos) || tiempos.length === 0) {",
+              "        console.warn(\"No hay datos de tiempo almacenados.\");",
+              "        pm.test(\"No se encontraron datos de tiempo para evaluar\", function () {",
+              "            pm.expect.fail(\"No hay datos suficientes para calcular m\u00e9tricas.\");",
+              "        });",
+              "    } else {",
+              "        let promedio = tiempos.reduce((acc, item) => acc + item.time, 0) / tiempos.length;",
+              "        let max = Math.max(...tiempos.map(t => t.time));",
+              "        let min = Math.min(...tiempos.map(t => t.time));",
+              "",
+              "        console.log(\"Tiempos registrados:\", tiempos);",
+              "        console.log(\"Promedio:\", promedio + \" ms\");",
+              "        console.log(\"M\u00e1ximo:\", max + \" ms\");",
+              "        console.log(\"M\u00ednimo:\", min + \" ms\");",
+              "",
+              "        pm.test(\"Promedio de tiempo < 1000 ms\", function () {",
+              "            pm.expect(promedio).to.be.below(1000);",
+              "        });",
+              "    }",
+              "} catch (error) {",
+              "    console.error(\"Error al procesar tiempos:\", error);",
+              "    pm.test(\"Error al analizar datos de tiempos\", function () {",
+              "        pm.expect.fail(\"Error JSON o estructura incorrecta.\");",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
